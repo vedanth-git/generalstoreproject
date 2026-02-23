@@ -6,22 +6,52 @@
 <body>
     <h1>General Store Income & Expense Project</h1>
 
-    <h2>Income</h2>
-    <p>You can add daily income entries here.</p>
+    <h2>Add Income</h2>
+    <input type="number" id="incomeInput" placeholder="Enter income amount">
+    <button onclick="addIncome()">Add Income</button>
 
-    <h2>Expense</h2>
-    <p>You can add daily expense entries here.</p>
+    <h2>Add Expense</h2>
+    <input type="number" id="expenseInput" placeholder="Enter expense amount">
+    <button onclick="addExpense()">Add Expense</button>
 
     <h2>Summary</h2>
-    <p>Total Income: (You can update manually)</p>
-    <p>Total Expense: (You can update manually)</p>
-    <p>Net Profit: (You can update manually)</p>
+    <p>Total Income: ₹ <span id="totalIncome">0</span></p>
+    <p>Total Expense: ₹ <span id="totalExpense">0</span></p>
+    <p>Net Profit: ₹ <span id="netProfit">0</span></p>
 
-    <h3>How to use:</h3>
-    <ol>
-        <li>Manually update the numbers above whenever you have new data.</li>
-        <li>Calculate net profit yourself (income minus expense).</li>
-    </ol>
+<script>
+    let totalIncome = 0;
+    let totalExpense = 0;
+
+    function addIncome() {
+        const incomeVal = Number(document.getElementById('incomeInput').value);
+        if (incomeVal > 0) {
+            totalIncome += incomeVal;
+            document.getElementById('totalIncome').innerText = totalIncome.toFixed(2);
+            updateProfit();
+            document.getElementById('incomeInput').value = '';
+        } else {
+            alert('Please enter a positive income amount.');
+        }
+    }
+
+    function addExpense() {
+        const expenseVal = Number(document.getElementById('expenseInput').value);
+        if (expenseVal > 0) {
+            totalExpense += expenseVal;
+            document.getElementById('totalExpense').innerText = totalExpense.toFixed(2);
+            updateProfit();
+            document.getElementById('expenseInput').value = '';
+        } else {
+            alert('Please enter a positive expense amount.');
+        }
+    }
+
+    function updateProfit() {
+        const profit = totalIncome - totalExpense;
+        document.getElementById('netProfit').innerText = profit.toFixed(2);
+    }
+</script>
 
 </body>
 </html>
