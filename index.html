@@ -1,57 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>General Store Income & Expense</title>
+    <title>Store Income & Expense</title>
 </head>
 <body>
-    <h1>General Store Income & Expense Project</h1>
+    <h1>Store Income & Expense</h1>
 
     <h2>Add Income</h2>
-    <input type="number" id="incomeInput" placeholder="Enter income amount">
-    <button onclick="addIncome()">Add Income</button>
+    <input id="income" type="number" placeholder="Enter income">
+    <button onclick="addIncome()">Add</button>
 
     <h2>Add Expense</h2>
-    <input type="number" id="expenseInput" placeholder="Enter expense amount">
-    <button onclick="addExpense()">Add Expense</button>
+    <input id="expense" type="number" placeholder="Enter expense">
+    <button onclick="addExpense()">Add</button>
 
     <h2>Summary</h2>
     <p>Total Income: ₹ <span id="totalIncome">0</span></p>
     <p>Total Expense: ₹ <span id="totalExpense">0</span></p>
     <p>Net Profit: ₹ <span id="netProfit">0</span></p>
 
-<script>
-    let totalIncome = 0;
-    let totalExpense = 0;
+    <script>
+        let totalIncome = 0;
+        let totalExpense = 0;
 
-    function addIncome() {
-        const incomeVal = Number(document.getElementById('incomeInput').value);
-        if (incomeVal > 0) {
-            totalIncome += incomeVal;
-            document.getElementById('totalIncome').innerText = totalIncome.toFixed(2);
-            updateProfit();
-            document.getElementById('incomeInput').value = '';
-        } else {
-            alert('Please enter a positive income amount.');
+        function addIncome() {
+            let val = Number(document.getElementById('income').value);
+            totalIncome = totalIncome + val;
+            document.getElementById('totalIncome').innerText = totalIncome;
+            document.getElementById('netProfit').innerText = totalIncome - totalExpense;
+            document.getElementById('income').value = '';
         }
-    }
 
-    function addExpense() {
-        const expenseVal = Number(document.getElementById('expenseInput').value);
-        if (expenseVal > 0) {
-            totalExpense += expenseVal;
-            document.getElementById('totalExpense').innerText = totalExpense.toFixed(2);
-            updateProfit();
-            document.getElementById('expenseInput').value = '';
-        } else {
-            alert('Please enter a positive expense amount.');
+        function addExpense() {
+            let val = Number(document.getElementById('expense').value);
+            totalExpense = totalExpense + val;
+            document.getElementById('totalExpense').innerText = totalExpense;
+            document.getElementById('netProfit').innerText = totalIncome - totalExpense;
+            document.getElementById('expense').value = '';
         }
-    }
-
-    function updateProfit() {
-        const profit = totalIncome - totalExpense;
-        document.getElementById('netProfit').innerText = profit.toFixed(2);
-    }
-</script>
-
+    </script>
 </body>
 </html>
