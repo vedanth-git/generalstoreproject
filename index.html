@@ -35,7 +35,7 @@
 
         function addExpense() {
             let val = Number(document.getElementById('expense').value);
-            
+            totalExpense+=value
             document.getElementById('totalExpense').innerText = totalExpense;
             document.getElementById('netProfit').innerText = totalIncome - totalExpense;
             document.getElementById('expense').value = '';
